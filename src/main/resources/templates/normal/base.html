@@ -7,13 +7,18 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 <link rel="stylesheet" th:href="@{/css/style.css}"/>
+<script type="" th:src="@{/js/script.js}"></script>
+
     <title th:text ="${title}" >Base html</title>
   </head>
   <body>
   
   <!-- Start Nav Bar -->
-   <nav class="navbar navbar-expand-lg navbar-dark  bg-primary">
+   <nav class="fixed-top navbar navbar-expand-lg navbar-dark  bg-primary">
    
   <div class="container-fluid">
   
@@ -28,16 +33,14 @@
           <a th:href="@{/}" class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
+       
         
     
         <li class="nav-item">
-          <a class="nav-link " th:href="@{/signin/}" tabindex="-1"  aria-disabled="true">Login</a>
+          <a class="nav-link "  tabindex="-1"  aria-disabled="true"><span th:text="${user.name}"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " th:href="@{/signup/}" href="#" tabindex="-1" aria-disabled="true">Signup</a>
+          <a class="nav-link " th:href="@{/logout}" href="#" tabindex="-1" aria-disabled="true">Logout</a>
         </li>
       </ul>
      
@@ -46,17 +49,47 @@
 </nav>
 <!-- End Nav Bar -->
 
+<!--This is sidebar  -->
+<div class="sidebar mt-2">
+<span onclick="toggleSidebar()"  class="crossBtn">&times;</span>
+<a href="#" th:href="@{/user/index}" class="item"> <i class="fas fa-home"></i>Home</a>
+<a href="#" class="item"><i class="far fa-address-book"></i>View Contacts</a>
+<a href="#" th:href="@{/user/add-contact}" class="item"><i class="fas fa-file-contract"></i>Add Contact</a>
+<a href="#" class="item"><i class="fas fa-user-circle"></i>Your Profile</a>
+<a href="#" class="item"><i class="fas fa-cogs"></i>Settings</a>
+<a href="#" th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt"></i>Logout</a>
+
+<div class="divider"></div>
+</div>
+
+<!--End sidebar  -->
+
+<!--this is content portion  -->
+<div class="content mt-5">
+<i onclick="toggleSidebar()"  class=" menulist fas fa-bars m-3"></i>
 
 
+<!-- message box  -->
+<div th:if="${session.message}" class="container">
 
+<div th:classappend="${'alert-'+session.message.type }" class="alert  text-center" role="alert">
+  <span th:text="${session.message.content}"></span>
+</div>
+</div>
 
-
-
-    
     <div th:replace="${content}">
     
     
     </div>
+    
+    <<th:bloc th:text="${#session.removeAttribute('message')}"></th:block>
+    
+</div>
+<!-- End of content area -->
+
+
+
+    
 
     <!-- Optional JavaScript; choose one of the two! -->
 

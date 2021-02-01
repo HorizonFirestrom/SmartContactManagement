@@ -8,15 +8,19 @@
 
 <section>
 
+<p></p>
 <div class="containter">
 <div class="row">
 
 <div class="col-md-6 offset-md-3">
 <div class="my-card ">
 
-<div th:if="${session.message}" th:classappend="${session.message.type}"class="alert " role="alert">
+
+
+
+<div th:if="${session.message}" th:classappend="${session.message.type}"  class="alert " role="alert">
   <p class="text-center" th:text="${session.message.content}"></p>
-  
+    
   <th:block th:text="${#session.removeAttribute('message')}"></th:block>
   
 </div>
@@ -27,7 +31,7 @@
 </div>
 <h1 class="text-center ">Register Here!!</h1>
 
-<form novalidate action="" th:action ="@{/do_register}" method="post" th:object="${user}">
+<form  th:action ="@{/do_register}" method="post" th:object="${user}">
 
 <!--name field  -->
 <div class="form-group">
@@ -35,7 +39,8 @@
     <input
     name="name"
      type="text" 
-     class="form-control" 
+     class="form-control "
+     th:classappend="${#fields.hasErrors('name')} ? 'is-invalid':''"
      id="name_field" 
      aria-describedby="emailHelp" 
      placeholder="Enter here"
@@ -43,6 +48,10 @@
      th:value="${user.name}"
      />
      
+      <div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}">
+         
+    </div>
+    
     
   </div>
 
@@ -54,7 +63,7 @@
     name="email"
      type="email" 
      class="form-control  " 
-     th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+     th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
      id="email_field" 
      aria-describedby="emailHelp" 
      placeholder="Enter here"
@@ -62,8 +71,8 @@
      th:value="${user.email}"
      />
      
-      <div  class="invalid-feedback" th:each="e:${#fields.errors('name')}" th:text="${e}">
-      
+      <div class="invalid-feedback" th:each="e : ${#fields.errors('email')}" th:text="${e}">
+         
     </div>
     
   </div>
@@ -90,7 +99,7 @@
     <!--User about field  -->
   <div class="form-group">
  
-  <textarea name="about" th:value="${user.about}" placeholder="Enter something yourself"  rows="10" class="form-control"></textarea>
+  <textarea name="about" th:text="${user.about}" placeholder="Enter something yourself"  rows="10" class="form-control"></textarea>
   </div>
   <!-- terms and conditions agreement -->
   
