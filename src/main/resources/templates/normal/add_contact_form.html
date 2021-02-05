@@ -48,7 +48,7 @@ th:replace="normal/base::layout(~{::section})">
  <i class="fa fa-phone"></i>
  </div>
  </div>
- <input required min="10" max="12" type="number" id="phone" name="phone" placeholder="Enter Phone No. here" class="form-control"/>
+ <input required   type="number" id="phone" name="phone" placeholder="Enter Phone No. here" class="form-control"/>
  </div>
  <!-- Email Here -->
  
@@ -67,17 +67,17 @@ th:replace="normal/base::layout(~{::section})">
  <div class="input-group-text">
  <i class="fa fa-briefcase"></i>
  </div>
- </div>u
+ </div>
  <input required type="text" id="work" name="work" placeholder="Enter Your Position here" class="form-control"/>
  </div>
  <!--  Contact Description-->
  <div class="form-group mt-3">
- <textarea id="myTextArea" required   class="form-control" placeholder="Enter your contact description" cols="" rows="20"></textarea>
+ <textarea id="myTextArea" required name="description"   class="form-control" placeholder="Enter your contact description" cols="" rows="20"></textarea>
  </div>
  
  <!--Contact Image  -->
  <div class="custom-file mt-3">
- <input required type="file" name="profileImage" />
+ <input type="file" name="profileImage" />
  </div>
  
  <div class="container text-center">
@@ -90,12 +90,13 @@ th:replace="normal/base::layout(~{::section})">
  </div>
  </div>
  </div>
- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-      tinymce.init({
-        selector: '#myTextArea'
-      });
-    </script>
+ 
+
+
+
+
+
+ 
 </section>
 </body>
 </html>
