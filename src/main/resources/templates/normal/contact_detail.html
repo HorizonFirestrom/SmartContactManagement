@@ -53,8 +53,10 @@ th:replace="normal/base::layout(~{::section})">
 <th:block th:text="${contact.description}"></th:block>
 </div>
 <div class="container mt-5">
- <button class="btn btn-danger btn-sm">Delete</button>
-      <button class="btn btn-success btn-sm">Update</button>
+ <a th:href="@{'/user/delete/'+${contact.cid}}" class="btn btn-danger btn-sm">Delete</a>
+        <form method="post" th:action="@{'/user/update-contact/'+${contact.cid}}">
+           <button  type="submit" class="btn btn-success btn-block btn-sm mt-2">Update</button>
+      </form>
 </div>
 
 </div>

@@ -40,12 +40,11 @@ public class User {
 	@Column(length = 500)
 	private String about;
 	
-	@OneToMany(cascade= CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany( cascade= CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval= true)
 	private List<Contact> contacts = new ArrayList<>();
 
 	public User() {
-		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public int getId() {

@@ -39,8 +39,9 @@ th:replace="normal/base::layout(~{::section})">
       <td th:text = "${c.phone}"></td>
       <td>
       <a th:href="@{'/user/delete/'+${c.cid}}" class="btn btn-danger btn-sm">Delete</a>
-      <a class="btn btn-success btn-sm">Update</a>
-      
+    <form method="post" th:action="@{'/user/update-contact/'+${c.cid}}">
+           <button  type="submit" class="btn btn-success btn-sm mt-2">Update</button>
+      </form>
       
       </td>
     </tr>  

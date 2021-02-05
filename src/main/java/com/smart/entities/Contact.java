@@ -101,6 +101,11 @@ public class Contact {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return this.cid == ((Contact) obj).getCid();
+	}
 
 	/*
 	 * @Override public String toString() { return "Contact [cid=" + cid + ", name="
